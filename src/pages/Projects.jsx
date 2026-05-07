@@ -1,13 +1,20 @@
-import { useQuery } from '@tanstack/react-query';
+
 import { useState, useMemo } from 'react';
-import { getProjects } from '../services/projectService';
+
 import ProjectCard from '../components/ProjectCard';
 
+const data = [
+    {
+        id: 1,
+        title: "Project One",
+        body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        image: "https://via.placeholder.com/300x200",
+        link: "https://example.com/project-one"
+    },
+]
+
 export default function Projects() {
-    const { data, isLoading } = useQuery({
-        queryKey: ['projects'],
-        queryFn: getProjects,
-    });
+
 
     const [search, setSearch] = useState("");
 
@@ -19,7 +26,7 @@ export default function Projects() {
             .slice(0, 12);
     }, [data, search]);
 
-    if (isLoading) return <h2>Loading...</h2>;
+    // if (isLoading) return <h2>Loading...</h2>;
 
     return (
         <div>
